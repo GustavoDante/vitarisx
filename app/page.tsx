@@ -8,7 +8,7 @@ import { NavBar } from './navBar';
 
 export default function Home() {
     return (
-        <main className="font-sans max-w-[1440px] mx-auto">
+        <main className="font-sans max-w-[1440px] overflow-x-hidden mx-auto">
           {/* Header */}
           <NavBar />
 
@@ -51,8 +51,14 @@ export default function Home() {
             <div className="h-1 w-48 bg-gray-300 mx-auto mb-12 rounded-full"></div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-10 text-center">
               {expect.map((item, idx) => (
-                <div key={idx} className="flex flex-col items-center gap-3">
-                  {item.icon()}
+                <div 
+                  key={idx} 
+                  className="flex flex-col items-center gap-3 animate-fadeIn"
+                  style={{ animationDelay: `${idx * 150}ms` }}
+                >
+                  <div className="transform transition-all duration-500 hover:scale-110 hover:rotate-3">
+                    {item.icon()}
+                  </div>
                   <p className="font-extrabold text-white text-base">{item.name}</p>
                 </div>
               ))}
@@ -61,18 +67,20 @@ export default function Home() {
     
           {/* Quem Somos */}
           <section id="quem-somos" className="py-20 bg-gray-100 gap-10">
-            <div className='flex gap-4 lg:gap-0 flex-col-reverse lg:flex-row items-center justify-between  bg-white px-6 py-20 w-full lg:px-24 rounded-lg lg:rounded-tl-[400px] shadow-2xl'>
-              <div className="lg:w-1/2 ">
+            <div className='relative flex gap-4 lg:gap-0 flex-col-reverse lg:flex-row items-center justify-between bg-white px-6 py-20 w-full lg:px-24 rounded-lg lg:rounded-tl-[350px] shadow-2xl overflow-visible'>
+              {/* Círculo com efeito blur */}
+              <div className="absolute hidden lg:block shadow-2xl -bottom-24  transform translate-x-1/2 w-80 h-80 rounded-full bg-gray-100/5 bg-opacity-20 backdrop-blur-xl z-30 animate-move-blur"></div>              
+              <div className="lg:w-1/2 relative z-20">
                 <h2 className="text-2xl font-bold text-blue-700 mb-4">Quem somos?</h2>
                 <p className="text-gray-700">
                   Quem Somos Na VitarisX, acreditamos que cuidar da mente é essencial para viver bem. Sabemos que a vida pode ser desafiadora e que, muitas vezes, só precisamos de alguém para nos ouvir sem julgamentos. É por isso que estamos aqui.
                   <br /><br />
                   Oferecemos atendimento psicológico 100% online, acessível e sem burocracia, para que você possa falar com um profissional qualificado no conforto da sua casa, quando precisar.
                   <br /><br />
-                  Seja ansiedade, estresse, autoestima ou qualquer outra questão, você não precisa enfrentar isso sozinho. Estamos prontos para te ajudar.
+                  Seja ansiedade, estresse, autoestima ou qualquer outra questão, você não precisa enfrentar isso sozinho. Estamos prontos para te ajudar.
                 </p>
               </div>
-              <div className="w-full lg:w-1/3">
+              <div className="w-full lg:w-1/3 relative z-20">
                 <Image
                   src="/peaple.png" // Substitua pela imagem real depois
                   alt="Equipe VitarisX"
